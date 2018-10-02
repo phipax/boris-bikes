@@ -22,7 +22,7 @@ class DockingStation
   def dock(bike)
     if @station_contains_bike == false && @@bikes_released.include?(bike)
       @@bikes_released.delete(bike)
-      @station_free = false
+      @station_contains_bike = true
       @var = bike
       return "Bike docked"
     else

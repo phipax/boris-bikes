@@ -31,4 +31,9 @@
        expect(@docking_station.release_bike).to eq "No bike available"
      end
 
+     it "Calling dock bike when the station is free returns success message" do
+       bike1 = @docking_station.release_bike
+       expect(@docking_station.dock(bike1)).to eq "Bike docked"
+     end
+
   end
