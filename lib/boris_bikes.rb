@@ -12,7 +12,7 @@ class DockingStation
     if @station_contains_bike == true
       @var.working?
       @@bikes_released.push(@var)
-      @station_free = true
+      @station_contains_bike = false
       return @var
     else
       "No bike available"
