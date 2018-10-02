@@ -3,24 +3,30 @@ class DockingStation
 
   def initialize
     @var = Bike.new
+    #@@bike_created.push(@var)
     @@bikes_released = Array.new
-    @station_free = false
+    @station_contains_bike = true
   end
 
   def release_bike
-    @var.working?
-    @@bikes_released.push(@var)
-    @station_free = true
-    return @var
+    if @station_contains_bike == true
+      @var.working?
+      @@bikes_released.push(@var)
+      @station_free = true
+      return @var
+    else
+      "No bike available"
+    end
   end
 
   def dock(bike)
-    if @station_free == true && @@bikes_released.include?(bike)
+    if @station_contains_bike == false && @@bikes_released.include?(bike)
       @@bikes_released.delete(bike)
       @station_free = false
-      return "bike docked"
+      @var = bike
+      return "Bike docked"
     else
-      return "unable to dock bike"
+      return "Unable to dock bike"
     end
   end
 
