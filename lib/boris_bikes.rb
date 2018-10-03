@@ -67,8 +67,13 @@ class Bike
   def condition_to_defective
     @bike_condition = false
   end
-
 end
 
+class Van
+  def fetch_broken_bikes(dockingstation)
+    return 1
+  end
+end
 
-puts "hi"
+class Garage
+end
