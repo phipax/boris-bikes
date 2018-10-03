@@ -8,7 +8,11 @@ describe DockingStation do
   end
 
   it "should create an object for DockingStation" do
-    expect(DockingStation.new).to be_a(DockingStation)
+    expect(DockingStation.new(40)).to be_a(DockingStation)
+  end
+
+  it "should create an object for DockingStation with capacity of 80" do
+    expect(DockingStation.new(80).sizeofthisstation).to eq(80)
   end
 
   it { is_expected.to respond_to(:release_bike) }
@@ -26,7 +30,7 @@ describe DockingStation do
   it {is_expected.to respond_to(:dock).with(1).argument}
 
   it "Calling dock bike when the station is not free returns warning" do
-    19.times do
+    ((DockingStation::MAXSIZE)-1).times do
       @docking_station.dock(Bike.new)
     end
     expect{@docking_station.dock(@bike)}.to raise_error("Unable to dock bike")

@@ -1,7 +1,8 @@
 class DockingStation
-
-  def initialize
-    @max_size = 20
+  MAXSIZE= 20
+  attr_accessor :sizeofthisstation
+  def initialize (max = MAXSIZE)
+    @sizeofthisstation = max
     @bike = Bike.new
     @bikes_in_station = [@bike]
   end
@@ -21,7 +22,7 @@ class DockingStation
   end
 
   def full?
-    if @bikes_in_station.length == @max_size
+    if @bikes_in_station.length == @sizeofthisstation
       return true
     else
       return false
