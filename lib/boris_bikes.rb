@@ -69,3 +69,6 @@ class Bike
   end
 
 end
+
+
+puts "hi"
