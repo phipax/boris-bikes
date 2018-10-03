@@ -10,24 +10,18 @@ class DockingStation
   end
 
   def release_bike
-    if @station_contains_bike == true
+    raise "No bike available" unless @station_contains_bike == true
       @@register[:bikes] << @bike
       @station_contains_bike = false
       return @bike
-    else
-      raise "No bike available"
-    end
   end
 
   def dock(bike)
-    if @station_contains_bike == false && @@register[:bikes].include?(bike)
+    raise "Unable to dock bike" unless @station_contains_bike == false && @@register[:bikes].include?(bike)
       @@register[:bikes].delete(bike)
       @station_contains_bike = true
       @bike = bike
       return "Bike docked"
-    else
-      raise "Unable to dock bike"
-    end
   end
 
 end
