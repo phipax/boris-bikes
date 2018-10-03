@@ -3,7 +3,6 @@ stations: []#if there's an entry in this array, it means a station is empty. Not
 }
 
 class DockingStation
-  attr_reader :var
 
   def initialize
     @bike = Bike.new
@@ -16,7 +15,7 @@ class DockingStation
       @station_contains_bike = false
       return @bike
     else
-      "No bike available"
+      raise "No bike available"
     end
   end
 
@@ -27,7 +26,7 @@ class DockingStation
       @bike = bike
       return "Bike docked"
     else
-      return "Unable to dock bike"
+      raise "Unable to dock bike"
     end
   end
 
@@ -35,7 +34,9 @@ end
 
 
 class Bike
+
   def working?
     true
   end
+
 end
