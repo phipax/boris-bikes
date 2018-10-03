@@ -1,7 +1,7 @@
 require "boris_bikes"
 
 describe DockingStation do
-
+  let (:bike) {double :bike}
   before(:each) do
     @docking_station = DockingStation.new
     #@bike = Bike.new
@@ -25,7 +25,9 @@ describe DockingStation do
   end
 
   it "Returns true from Working? method" do
-    expect(@docking_station.release_bike.working?).to eq(true)
+    allow(bike).to receive(:working?).and_return(true)
+    expect(bike.working?).to eq(true)
+    #expect(@docking_station.release_bike.working?).to eq(true)
   end
 
   it {is_expected.to respond_to(:dock).with(1).argument}
@@ -48,8 +50,12 @@ describe DockingStation do
   end
 
   it "Shows condition as defective when returning defective bike" do
-    @docking_station.dock_defective_bike(double(:bike))
-    expect(double(:bike).working?).to eq(false)
+
+    allow(bike).to receive(:working?).and_return(false)
+    allow(bike).to receive(:condition_to_defective)
+
+    @docking_station.dock_defective_bike(bike)
+    expect(bike.working?).to eq(false)
   end
 
 end
