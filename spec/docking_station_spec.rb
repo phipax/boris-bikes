@@ -4,7 +4,7 @@ describe DockingStation do
 
   before(:each) do
     @docking_station = DockingStation.new
-    @bike = Bike.new
+    #@bike = Bike.new
   end
 
   it "should create an object for DockingStation" do
@@ -32,9 +32,9 @@ describe DockingStation do
 
   it "Calling dock bike when the station is not free returns warning" do
     ((DockingStation::MAXSIZE)-1).times do
-      @docking_station.dock(Bike.new)
+      @docking_station.dock(double(:bike))
     end
-    expect{@docking_station.dock(@bike)}.to raise_error("Station full: Unable to dock bike")
+    expect{@docking_station.dock(double(:bike))}.to raise_error("Station full: Unable to dock bike")
   end
 
   it "Releasing bike from empty station returns warning" do
@@ -48,8 +48,8 @@ describe DockingStation do
   end
 
   it "Shows condition as defective when returning defective bike" do
-    @docking_station.dock_defective_bike(@bike)
-    expect(@bike.working?).to eq(false)
+    @docking_station.dock_defective_bike(double(:bike))
+    expect(double(:bike).working?).to eq(false)
   end
 
 end
