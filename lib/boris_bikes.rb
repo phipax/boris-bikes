@@ -1,25 +1,20 @@
-@@register = { bikes: [], #if there's an entry within this array, it means a bike is being used.
-stations: []#if there's an entry in this array, it means a station is empty. Not yet coded.
-}
-
 class DockingStation
 
   def initialize
+    @max_size = 20
     @bike = Bike.new
-    @station_contains_bike = true
+    @bikes_in_station = [@bike]
   end
 
   def release_bike
-    raise "No bike available" unless @station_contains_bike == true
-      @@register[:bikes] << @bike
-      @station_contains_bike = false
-      return @bike
+    raise "No bike available" unless @bikes_in_station.length > 0
+    @bikes_in_station.pop
+    return @bike
   end
 
   def dock(bike)
-    raise "Unable to dock bike" unless @station_contains_bike == false && @@register[:bikes].include?(bike)
-      @@register[:bikes].delete(bike)
-      @station_contains_bike = true
+    raise "Unable to dock bike" unless @bikes_in_station.length < @max_size
+      @bikes_in_station << @bike
       @bike = bike
       return "Bike docked"
   end

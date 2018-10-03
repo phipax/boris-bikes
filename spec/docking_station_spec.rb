@@ -24,6 +24,9 @@ describe DockingStation do
      it {is_expected.to respond_to(:dock).with(1).argument}
 
      it "Calling dock bike when the station is not free returns warning" do
+       19.times do
+         @docking_station.dock(Bike.new)
+       end
        expect{@docking_station.dock(@bike)}.to raise_error("Unable to dock bike")
      end
 
