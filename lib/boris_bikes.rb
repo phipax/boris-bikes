@@ -16,9 +16,16 @@ class DockingStation
 
   def dock(bike)
     #raise "Unable to dock bike" unless @bikes_in_station.length < @max_size
-    raise "Unable to dock bike" if full?
-    @bikes_in_station << @bike
+    raise "Station full: Unable to dock bike" if full?
+    @bikes_in_station << bike
     return "Bike docked"
+  end
+
+  def dock_defective_bike(bike)
+    raise "Station full: Unable to dock bike" if full?
+    bike.condition_to_defective
+    @bikes_in_station << bike
+    return "Defective bike docked"
   end
 
   def full?
@@ -33,8 +40,13 @@ class DockingStation
     if @bikes_in_station.length == 0
       return true
     else
-      return false
+      @bikes_in_station.each do |bike|
+        if bike.working?
+          return false
+        end
+      end
     end
+    return true
   end
 
   private :full?, :empty?
@@ -44,8 +56,16 @@ end
 
 class Bike
 
+  def initialize
+    @bike_condition = true
+  end
+
   def working?
-    true
+    return @bike_condition
+  end
+
+  def condition_to_defective
+    @bike_condition = false
   end
 
 end

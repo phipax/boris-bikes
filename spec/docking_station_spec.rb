@@ -18,6 +18,7 @@ describe DockingStation do
   it { is_expected.to respond_to(:release_bike) }
 #  it { is_expected.to respond_to(:empty?) }
 #  it { is_expected.to respond_to(:full?) }
+  it { is_expected.to respond_to(:dock_defective_bike) }
 
   it "Release bike creating an instance of Bike Class" do
     expect(@docking_station.release_bike).to be_a(Bike)
@@ -33,7 +34,7 @@ describe DockingStation do
     ((DockingStation::MAXSIZE)-1).times do
       @docking_station.dock(Bike.new)
     end
-    expect{@docking_station.dock(@bike)}.to raise_error("Unable to dock bike")
+    expect{@docking_station.dock(@bike)}.to raise_error("Station full: Unable to dock bike")
   end
 
   it "Releasing bike from empty station returns warning" do
@@ -44,6 +45,11 @@ describe DockingStation do
   it "Calling dock bike when the station is free returns success message" do
     bike1 = @docking_station.release_bike
     expect(@docking_station.dock(bike1)).to eq "Bike docked"
+  end
+
+  it "Shows condition as defective when returning defective bike" do
+    @docking_station.dock_defective_bike(@bike)
+    expect(@bike.working?).to eq(false)
   end
 
 end
