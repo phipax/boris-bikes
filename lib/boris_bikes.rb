@@ -1,38 +1,37 @@
 
 class DockingStation
-  attr_reader :var
+  attr_reader :bike
   @@bikes_released = Array.new
 
   def initialize
-    @var = Bike.new
+    @bike = ''
     @station_contains_bike = true
   end
 
   def release_bike
+    @bike = Bike.new
     if @station_contains_bike == true
-      @var.working?
-      @@bikes_released.push(@var)
+      @bike.working?
+      @@bikes_released.push(@bike)
       #puts @@bikes_released
       @station_contains_bike = false
-      return @var
-      @var
+      @bike
     else
      raise "No bike available"
     end
   end
 
   def dock(bike)
-    #puts "#{@station_contains_bike} #{@@bikes_released}"
+  #  puts "#{@station_contains_bike} #{@@bikes_released}"
     if @station_contains_bike == false && @@bikes_released.include?(bike)
       @@bikes_released.delete(bike)
       @station_contains_bike = true
-      @var = bike
+      @bike = bike
       "Bike docked"
     else
-      raise "Unable to dock bike"
+      raise "Unable to dock more bikes"
     end
   end
-
 end
 
 class Bike
