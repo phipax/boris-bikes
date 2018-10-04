@@ -9,6 +9,7 @@ Exercises 12 - 21 completed by Melissa Sedgwick and Preeti Sekhon
 ## Getting started
 
 `git clone https://github.com/melissasedgwick/boris-bikes.git`
+
 `command_to_install_dependencies` (e.g. `bundle`)
 
 ## Usage
@@ -19,4 +20,8 @@ Exercises 12 - 21 completed by Melissa Sedgwick and Preeti Sekhon
 
 `rspec`
 
-`irb:`
+`>irb:
+
+require './lib/boris_bikes.rb'
+
+`
