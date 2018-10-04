@@ -10,6 +10,14 @@
       expect(DockingStation.new).to be_a(DockingStation)
     end
 
+  #  describe "#release_bike" do
+  #    it "raises error when no bikes are available" do
+  #      bike = Bike.new
+  #      subject.dock(bike)
+  #      expect {subject.release_bike}.to raise_error 'No bikes available'
+  #  end
+  #  end
+
      it { is_expected.to respond_to(:release_bike) }
 
      it "Release bike creating an instance of Bike Class" do
@@ -28,12 +36,11 @@
 
      it "Releasing bike from empty station returns warning" do
        @docking_station.release_bike
-       expect(@docking_station.release_bike).to eq "No bike available"
+       expect{@docking_station.release_bike}.to raise_error("No bike available")
      end
 
      it "Calling dock bike when the station is free returns success message" do
        bike1 = @docking_station.release_bike
        expect(@docking_station.dock(bike1)).to eq "Bike docked"
      end
-
-  end
+end

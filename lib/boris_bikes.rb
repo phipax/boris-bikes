@@ -15,8 +15,9 @@ class DockingStation
       #puts @@bikes_released
       @station_contains_bike = false
       return @var
+      @var
     else
-      "No bike available"
+     raise "No bike available"
     end
   end
 
@@ -34,9 +35,44 @@ class DockingStation
 
 end
 
-
 class Bike
   def working?
     true
   end
 end
+# old code
+=begin
+attr_reader :var
+@@bikes_released = Array.new
+
+def initialize
+  @var = Bike.new
+  @station_contains_bike = true
+end
+
+def release_bike
+  Bike.new
+  if @station_contains_bike == true
+    @var.working?
+    @@bikes_released.push(@var)
+    #puts @@bikes_released
+    @station_contains_bike = false
+    return @var
+    @var
+  else
+    "No bike available"
+  end
+end
+
+def dock(bike)
+  #puts "#{@station_contains_bike} #{@@bikes_released}"
+  if @station_contains_bike == false && @@bikes_released.include?(bike)
+    @@bikes_released.delete(bike)
+    @station_contains_bike = true
+    @var = bike
+    "Bike docked"
+  else
+    "Unable to dock bike"
+  end
+end
+=end
