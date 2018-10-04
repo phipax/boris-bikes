@@ -31,7 +31,8 @@
      it {is_expected.to respond_to(:dock).with(1).argument}
 
      it "Calling dock bike when the station is not free returns warning" do
-       expect(@docking_station.dock(@bike)).to eq "Unable to dock bike"
+#       @docking_station.dock(@bike)
+       expect{@docking_station.dock(@bike)}.to raise_error("Unable to dock bike")
      end
 
      it "Releasing bike from empty station returns warning" do

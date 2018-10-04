@@ -29,7 +29,7 @@ class DockingStation
       @var = bike
       "Bike docked"
     else
-      "Unable to dock bike"
+      raise "Unable to dock bike"
     end
   end
 
