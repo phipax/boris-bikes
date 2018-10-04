@@ -12,7 +12,7 @@ describe DockingStation do
   end
 
   it "should create an object for DockingStation with capacity of 80" do
-    expect(DockingStation.new(80).sizeofthisstation).to eq(80)
+    expect(DockingStation.new(80).size_of_station).to eq(80)
   end
 
   it { is_expected.to respond_to(:release_bike) }
