@@ -29,11 +29,7 @@ class DockingStation
   end
 
   def full?
-    if @bikes_in_station.length == @size_of_station
-      return true
-    else
-      return false
-    end
+    @bikes_in_station.length == @size_of_station
   end
 
   def empty?
