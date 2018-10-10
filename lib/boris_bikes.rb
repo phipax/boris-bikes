@@ -2,17 +2,18 @@
 class DockingStation
   attr_reader :bike
   @@bikes_released = Array.new
+  BIKECOUNT = 20
 
   def initialize
-    @bike = ''
+    @bike = []
     @station_contains_bike = true
   end
 
   def release_bike
-    @bike = Bike.new
+    @bike.push(Bike.new) if(@bike.count == 0 || @bike.count <= BIKECOUNT) 
     if @station_contains_bike == true
-      @bike.working?
-      @@bikes_released.push(@bike)
+      @bike[0].working?
+      @@bikes_released.push(@bike[])
       #puts @@bikes_released
       @station_contains_bike = false
       @bike
