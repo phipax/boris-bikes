@@ -20,7 +20,7 @@ Exercises 12 - 21 completed by Melissa Sedgwick and Preeti Sekhon
 
 `rspec`
 
-`>irb:
+`> irb:
 
 require './lib/boris_bikes.rb'
 
